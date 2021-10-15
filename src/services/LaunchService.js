@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SERVICES_URL = 'https://api.spacexdata.com/v3';
+const SERVICES_URL = 'https://api.spacexdata.com/v4';
 const serviceUrl = `${SERVICES_URL}/launches`;
 
 const api = axios.create();

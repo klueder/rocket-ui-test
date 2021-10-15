@@ -1,18 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Launch extends Component {
+const Launch = class extends React.PureComponent {
 
   render() {
 
-    let launch = this.props.launch;
+    const Button = ({ launch }) => <Button>{launch}</Button>;
+
+    Button.propTypes = {
+      launch: PropTypes.node,
+    };
 
     return (
       <li>
-        <h2> { launch.mission_name } </h2>
-        <div> Flight Number: { launch.flight_number } </div>
+        <p>{Button}</p>
+        <h2> { Button.mission_name } </h2>
+        <div> Flight Number: { Button.flight_number } </div>
       </li>
     );
   }
 }
+
+
 
 export default Launch;

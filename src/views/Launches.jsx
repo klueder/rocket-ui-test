@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ConnectedView from './ConnectedView';
 import {fetchLaunchesIfNeeded} from "../actions/Launches";
 import Launch from '../components/Launch';
 
-class LaunchesView extends Component {
+const LaunchesView = class extends React.PureComponent {
   componentDidMount() {
     const { dispatch, launchesCollection } = this.props;
     fetchLaunchesIfNeeded({ dispatch, launchesCollection });

@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -31,6 +31,7 @@ module.exports = {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  mode: 'development',
   module: {
     rules: [
       { // handle images
@@ -75,7 +76,10 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: path.resolve(__dirname, "src"),
-        use: 'babel-loader'
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       }
     ]
   },  resolve: {
@@ -89,13 +93,17 @@ module.exports = {
     }
   },
   devServer: {
-    contentBase: "./public",
+    // contentBase: "./public",
+    static: {
+      directory : "./public"
+
+    },
     // do not print bundle build stats
-    noInfo: true,
+    // noInfo: true,
     // enable HMR
     hot: true,
     // embed the webpack-dev-server runtime into the bundle
-    inline: true,
+    // inline: true,
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
     port: PORT,
@@ -104,7 +112,7 @@ module.exports = {
   performance: { hints: false },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
